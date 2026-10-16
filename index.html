@@ -39,11 +39,15 @@ function addButton(text, url) {
 const id = new URLSearchParams(location.search).get("game");
 
 if (GAMES[id]) {
-  document.getElementById("t").textContent = GAMES[id].name;
-  if (!launch(GAMES[id].url)) addButton("▶ Tap to play", GAMES[id].url);
+  document.title = "Homework";
+  document.body.style.cssText = "margin:0;padding:0;background:#000;overflow:hidden";
+  document.body.innerHTML = `<iframe src="${GAMES[id].url}"
+    allow="fullscreen; autoplay; gamepad" allowfullscreen
+    style="border:0;position:fixed;top:0;left:0;width:100%;height:100%"></iframe>`;
 } else {
   Object.values(GAMES).forEach(g => addButton(g.name, g.url));
 }
+
 </script>
 </body>
 </html>
